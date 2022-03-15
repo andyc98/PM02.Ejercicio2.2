@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PM02.Ejercicio2._2.Features;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,5 +17,29 @@ public partial class ListaFirmas : ContentPage
     {
         InitializeComponent();
     }
-}
+
+
+     protected override void OnAppearing()
+        {
+
+            base.OnAppearing();
+            LoadCollectionView();
+        }
+
+        private async void LoadCollectionView()
+        {
+            listafirmas.ItemsSource = await App.BaseDatos.GetListFirmas();
+        }
+
+        private async void listSignatures_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            var itemSelected = (Firmas)e.SelectedItem;
+
+            var signatureObtained = await App.BaseDatos.GetFirmaPorId(itemSelected.id);
+
+            var showSignatureInformationPage = new MostrarFirma(signatureObtained);
+
+            await Navigation.PushAsync(showSignatureInformationPage);
+        }
+    }
 }

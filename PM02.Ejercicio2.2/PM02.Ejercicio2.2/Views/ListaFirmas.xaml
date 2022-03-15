@@ -4,9 +4,31 @@
              x:Class="PM02.Ejercicio2._2.Views.ListaFirmas">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <ListView x:Name="listafirmas" ItemSelected="listSignatures_ItemSelected" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding id}" Grid.Row="0" Grid.Column="0" TextColor="Black"></Label>
+                                <Label x:Name="txtName" Text="{Binding nombre}" Grid.Row="1" Grid.Column="1" TextColor="Black" Padding="10"></Label>
+                                <Label Text="{Binding description}" Grid.Row="0" Grid.Column="2" TextColor="Black"></Label>
+                                <Label x:Name="imageCodeText" Text="{Binding image}" Grid.Row="3" Grid.Column="0" TextColor="Black" IsVisible="false"></Label>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

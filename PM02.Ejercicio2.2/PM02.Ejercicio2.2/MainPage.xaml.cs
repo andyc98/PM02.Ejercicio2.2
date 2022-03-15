@@ -26,7 +26,7 @@ namespace PM02.Ejercicio2._2
 
             if (String.IsNullOrWhiteSpace(txt_nombre.Text) || String.IsNullOrWhiteSpace(txt_descripcion.Text))
             {
-                await DisplayAlert("ERROR", "SE DEBEN DE LLENAR LOS DATOS DE NOMBRE Y DESCRIPCION PARA GUARDAR", "ACEPTAR");
+                await DisplayAlert("Atencion", "Nombre y descripcion requeridos", "Ok");
             }
 
             var signatureToSave = new Firmas
@@ -40,15 +40,15 @@ namespace PM02.Ejercicio2._2
 
             if (result != 1)
             {
-                await DisplayAlert("ERROR", "OCURRIO UN ERROR, INTENTE DE NUEVO", "ACEPTAR");
+                await DisplayAlert("Atencion", "Ha ocurrido un error", "Ok");
             }
 
-            await DisplayAlert("AVISO", "GUARDADO CORRECTAMENTE", "ACEPTAR");
+            await DisplayAlert("Atencion", "El registro se guardó correctamente", "Ok");
         }
 
         private async void ViewSignaturesButton_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new ListaFirmas());
+            await Navigation.PushModalAsync(new NavigationPage(new ListaFirmas()));
         }
 
         private void ClearButton_Clicked(object sender, EventArgs e)
